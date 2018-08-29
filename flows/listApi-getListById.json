@@ -1,0 +1,81 @@
+{
+	"schemaVersion": "3",
+	"info": {
+		"name": "getListById"
+	},
+	"parameter": {
+		"properties": {
+			"params": {
+				"type": "object",
+				"description": "The parameters from the endpoint."
+			},
+			"request": {
+				"type": "object",
+				"description": "The HTTP request."
+			},
+			"config": {
+				"type": "object",
+				"description": "The service's configuration"
+			},
+			"env": {
+				"type": "object",
+				"description": "The host OS environment"
+			}
+		},
+		"additionalProperties": false,
+		"required": [
+			"params",
+			"request",
+			"config",
+			"env"
+		]
+	},
+	"start": "mylist.1",
+	"nodes": {
+		"http.setresponse.1": {
+			"type": "nodehandler://axway-flow/http",
+			"method": "setresponse",
+			"name": "Set HTTP Response",
+			"parameters": [
+				{
+					"name": "status",
+					"value": "200",
+					"type": "number"
+				},
+				{
+					"name": "body",
+					"type": "jsonpath",
+					"value": "$.foundByID"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.response"
+				}
+			}
+		},
+		"mylist.1": {
+			"type": "nodehandler://api-builder-flow-invoke/model/mylist",
+			"name": "findByID",
+			"method": "findByID",
+			"parameters": [
+				{
+					"name": "id",
+					"type": "jsonpath",
+					"value": "$.params.id"
+				}
+			],
+			"outputs": {
+				"next": {
+					"routes": [
+						"http.setresponse.1"
+					],
+					"context": "$.foundByID"
+				},
+				"notfound": {
+					"routes": []
+				}
+			}
+		}
+	}
+}

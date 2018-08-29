@@ -1,0 +1,116 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "List API",
+    "version": "1.0"
+  },
+  "host": "example.com",
+  "paths": {
+    "/list": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/list"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "name": "culpa labore magna",
+                  "price": "esse magna Ut",
+                  "store": "laborum"
+                }
+              ]
+            }
+          }
+        },
+        "x-flow": "listApi-getList"
+      },
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/list"
+            },
+            "x-examples": {
+              "application/json": {
+                "name": "tempor",
+                "price": "nostrud reprehender",
+                "store": ""
+              }
+            }
+          }
+        ],
+        "x-flow": "listApi-postList"
+      }
+    },
+    "/list/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/list"
+            },
+            "examples": {
+              "application/json": {
+                "name": "velit in non",
+                "price": "mollit ir",
+                "store": "elit dolor non dolor laborum"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "x-flow": "listApi-getListById"
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "list": {
+      "type": "object",
+      "title": "list",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "store": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

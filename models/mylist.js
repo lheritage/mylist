@@ -1,6 +1,5 @@
 var APIBuilder = require('@axway/api-builder-runtime');
 var Model = APIBuilder.createModel('mylist', {
-    "connector": "memory",
     "fields": {
         "name": {
             "type": "string"
@@ -12,12 +11,7 @@ var Model = APIBuilder.createModel('mylist', {
             "type": "string"
         }
     },
-    "actions": [
-        "create",
-        "read",
-        "update",
-        "delete",
-        "deleteAll"
-    ]
+    "connector": "memory",
+    "actions": []
 });
 module.exports = Model;
