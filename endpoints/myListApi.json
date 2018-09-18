@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "List API",
+    "title": "My List API",
     "version": "1.0"
   },
   "host": "example.com",
@@ -20,15 +20,15 @@
             "examples": {
               "application/json": [
                 {
-                  "name": "culpa labore magna",
-                  "price": "esse magna Ut",
-                  "store": "laborum"
+                  "name": "sed mollit sit",
+                  "price": "sit esse",
+                  "store": "enim velit"
                 }
               ]
             }
           }
         },
-        "x-flow": "listApi-getList"
+        "x-flow": "myListApi-getList"
       },
       "post": {
         "responses": {
@@ -46,17 +46,10 @@
             "name": "body",
             "schema": {
               "$ref": "#/definitions/list"
-            },
-            "x-examples": {
-              "application/json": {
-                "name": "tempor",
-                "price": "nostrud reprehender",
-                "store": ""
-              }
             }
           }
         ],
-        "x-flow": "listApi-postList"
+        "x-flow": "myListApi-postList"
       }
     },
     "/list/{id}": {
@@ -66,13 +59,6 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/list"
-            },
-            "examples": {
-              "application/json": {
-                "name": "velit in non",
-                "price": "mollit ir",
-                "store": "elit dolor non dolor laborum"
-              }
             }
           }
         },
@@ -84,7 +70,7 @@
             "required": true
           }
         ],
-        "x-flow": "listApi-getListById"
+        "x-flow": "myListApi-getListById"
       },
       "parameters": [
         {
@@ -93,7 +79,27 @@
           "type": "string",
           "required": true
         }
-      ]
+      ],
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "x-flow": "myListApi-deleteListById"
+      }
     }
   },
   "definitions": {
